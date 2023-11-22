@@ -34,6 +34,7 @@ jobs:
       - name: Run Tests
         id: test
         run: |
+          cd python
           if ! python manage.py test --settings=server.settings_test; then
             echo "Tests failed"
             echo "TEST_STATUS=failed" >> $GITHUB_ENV
@@ -45,11 +46,13 @@ jobs:
       - name: Applying Migrations
         if: ${{ env.TEST_STATUS != 'failed' }}
         run: |
+          cd python
           python manage.py makemigrations
           python manage.py migrate
       - name: Installing Zappa and Initializing Zappa
         if: ${{ env.TEST_STATUS != 'failed' }}
         run: |
+          cd python
           python -m venv venv
           source venv/bin/activate
           pip install zappa        
@@ -59,6 +62,7 @@ jobs:
       - name: Deploying/Updating Django app with Zappa
         if: ${{ env.TEST_STATUS != 'failed' }}
         run: |
+          cd python
           source venv/bin/activate
           pip install -r requirements.txt
           zappa update production
