@@ -1,12 +1,12 @@
-name: Django CI5
+name: Django CI
 
 on:
   push:
     branches:
-      - "master"
+      - "python"
   pull_request:
     branches:
-      - "master"
+      - "python"
 
 jobs:
   build:
