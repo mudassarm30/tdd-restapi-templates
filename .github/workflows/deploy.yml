@@ -20,21 +20,20 @@ jobs:
       run: |
         if [ "${{ github.ref }}" == "refs/heads/csharp" ]; then
           echo "Triggering C# Deployment"
-          cat csharp/deploy.yml >> deploy.yml
+          cat csharp/deploy.yml >> .github/workflows/deploy.yml
         elif [ "${{ github.ref }}" == "refs/heads/java" ]; then
           echo "Triggering Java Deployment"
-          cat java/deploy.yml >> deploy.yml
+          cat java/deploy.yml >> .github/workflows/deploy.yml
         elif [ "${{ github.ref }}" == "refs/heads/python" ]; then
           echo "Triggering Python Deployment"
-          cat python/deploy.yml >> deploy.yml
+          cat python/deploy.yml >> .github/workflows/deploy.yml
         elif [ "${{ github.ref }}" == "refs/heads/php" ]; then
           echo "Triggering PHP Deployment"
-          cat php/deploy.yml >> deploy.yml
+          cat php/deploy.yml >> .github/workflows/deploy.yml
         else
           echo "No changes in supported branches. Skipping deployment."
         fi
 
     - name: Execute Deploy
       run: |
-        cat deploy.yml
-        # Add any additional steps you need before or after executing the deployment file
+        source .github/workflows/deploy.yml
