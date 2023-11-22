@@ -31,7 +31,7 @@ jobs:
           echo "Triggering PHP Deployment"
           cat php/deploy.yml >> deploy.yml
         else
-          git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }}
           echo "No changes in supported folders. Skipping deployment."
         fi
 
