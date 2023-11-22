@@ -1,0 +1,32 @@
+name: Centralized Deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Trigger Deployment Workflow
+      run: |
+        if [ -n "$(git diff --name-only ${{ github.sha }} ${{ github.sha^ }} | grep 'csharp/')" ]; then
+          echo "Triggering C# Deployment"
+          cat csharp/deploy.yml >> deploy.yml
+        elif [ -n "$(git diff --name-only ${{ github.sha }} ${{ github.sha^ }} | grep 'java/')" ]; then
+          echo "Triggering Java Deployment"
+          cat java/deploy.yml >> deploy.yml
+        elif [ -n "$(git diff --name-only ${{ github.sha }} ${{ github.sha^ }} | grep 'python/')" ]; then
+          echo "Triggering Python Deployment"
+          cat python/deploy.yml >> deploy.yml
+        elif [ -n "$(git diff --name-only ${{ github.sha }} ${{ github.sha^ }} | grep 'php/')" ]; then
+          echo "Triggering PHP Deployment"
+          cat php/deploy.yml >> deploy.yml
+        else
+          echo "No changes in supported folders. Skipping deployment."
+        fi
+
+    - name: Execute Deploy
+      run: |
+        cat deploy.yml
+        # Add any additional steps you need before or after executing the deployment file
