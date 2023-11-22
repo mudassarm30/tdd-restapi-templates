@@ -3,10 +3,10 @@ name: Centralized Deploy
 on:
   push:
     branches:
-      - "master"
-  pull_request:
-    branches:
-      - "master"
+      - csharp
+      - java
+      - python
+      - php
 
 jobs:
   deploy:
@@ -18,21 +18,20 @@ jobs:
 
     - name: Trigger Deployment Workflow
       run: |
-        if [ -n "$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'csharp/')" ]; then
+        if [ "${{ github.ref }}" == "refs/heads/csharp" ]; then
           echo "Triggering C# Deployment"
           cat csharp/deploy.yml >> deploy.yml
-        elif [ -n "$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'java/')" ]; then
+        elif [ "${{ github.ref }}" == "refs/heads/java" ]; then
           echo "Triggering Java Deployment"
           cat java/deploy.yml >> deploy.yml
-        elif [ -n "$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'python/')" ]; then
+        elif [ "${{ github.ref }}" == "refs/heads/python" ]; then
           echo "Triggering Python Deployment"
           cat python/deploy.yml >> deploy.yml
-        elif [ -n "$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'php/')" ]; then
+        elif [ "${{ github.ref }}" == "refs/heads/php" ]; then
           echo "Triggering PHP Deployment"
           cat php/deploy.yml >> deploy.yml
         else
-          git diff --name-only ${{ github.event.before }} ${{ github.sha }}
-          echo "No changes in supported folders. Skipping deployment."
+          echo "No changes in supported branches. Skipping deployment."
         fi
 
     - name: Execute Deploy
