@@ -15,7 +15,7 @@ class Company(models.Model):
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     class Meta:
-        db_table = "gharbanana_company"
+        db_table = "python_company"
 
     def __str__(self):
         return self.name
