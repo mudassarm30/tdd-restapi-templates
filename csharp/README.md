@@ -1,4 +1,4 @@
-# RestApi
+# RestApi Project in C# and Entity Framework
 
 This is a scaffold project for a REST API using C# and Entity Framework. The API is designed to be deployed on AWS using API Gateway and Lambda functions.
 
