@@ -24,9 +24,14 @@ public class CompanyController : ControllerBase
     {
         return Ok(new Company
         {
-            Date = DateTime.Now.AddDays(1),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            Id = 1,
+            Name = "Company Name",
+            Address = "Company Address",
+            Phone = "Company Phone",
+            Email = "Company Email",
+            Website = "Company Website",
+            Description = "Company Description",
+            Logo = "Company Logo"
         });
     }
 }

@@ -1,12 +1,30 @@
-namespace RestApi.Models;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 public class Company
 {
-    public DateTime Date { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; }
 
-    public int TemperatureC { get; set; }
+    [BsonElement("Name")]
+    public string Name { get; set; }
 
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    [BsonElement("Address")]
+    public string Address { get; set; }
 
-    public string? Summary { get; set; }
+    [BsonElement("Phone")]
+    public string Phone { get; set; }
+
+    [BsonElement("Email")]
+    public string Email { get; set; }
+
+    [BsonElement("Website")]
+    public string Website { get; set; }
+
+    [BsonElement("Description")]
+    public string Description { get; set; }
+
+    [BsonElement("Logo")]
+    public string Logo { get; set; }
 }
