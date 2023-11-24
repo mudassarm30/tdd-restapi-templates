@@ -67,10 +67,10 @@ WSGI_APPLICATION = 'server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'dbtddrestapi',
+        'NAME': 'db_python_tddrestapi',
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
-            'host': 'mongodb+srv://tddrestapiuser:VNEClewwM25S1AOA@tdd-restapi-cluster.xnn5nok.mongodb.net/dbtddrestapi',
+            'host': 'mongodb+srv://tddrestapiuser:VNEClewwM25S1AOA@tdd-restapi-cluster.xnn5nok.mongodb.net/db_python_tddrestapi',
         }
     }
 }
