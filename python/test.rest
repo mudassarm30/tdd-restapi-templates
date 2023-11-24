@@ -1,0 +1,38 @@
+###
+POST https://pyc51xrfdg.execute-api.us-east-1.amazonaws.com/production/api/users/signup
+Content-Type: application/json
+
+{ "username": "adam1", "password": "Pass1234!", "email": "adam1@mail.com" }
+
+###
+POST https://pyc51xrfdg.execute-api.us-east-1.amazonaws.com/production/api/users/login 
+Content-Type: application/json
+
+{ "username": "adam", "password": "Pass1234!" }
+
+###
+GET https://pyc51xrfdg.execute-api.us-east-1.amazonaws.com/production/api/users/test_token
+Content-Type: application/json
+Authorization: token be176d07cc024f55c0787a08fc223ec56e278e39
+
+###
+POST https://pyc51xrfdg.execute-api.us-east-1.amazonaws.com/production/api/companies/
+Content-Type: application/json
+Authorization: token be176d07cc024f55c0787a08fc223ec56e278e39
+
+{ "name": "Company 1", "address": "Address 1", "city": "City 1", "country": "Country 1", "email": "adam@mail.com", "phone": "45651423", "website": "www.company1.com", "description": "Company description", "user": 1, "logo": "https://static.vecteezy.com/system/resources/previews/008/214/517/non_2x/abstract-geometric-logo-or-infinity-line-logo-for-your-company-free-vector.jpg" }
+
+###
+GET https://pyc51xrfdg.execute-api.us-east-1.amazonaws.com/production/api/companies/
+Content-Type: application/json
+Authorization: token be176d07cc024f55c0787a08fc223ec56e278e39
+
+###
+GET https://pyc51xrfdg.execute-api.us-east-1.amazonaws.com/production/api/companies/1/
+Content-Type: application/json
+Authorization: token be176d07cc024f55c0787a08fc223ec56e278e39
+
+###
+GET https://pyc51xrfdg.execute-api.us-east-1.amazonaws.com/production/api/companies/byUser/1/
+Content-Type: application/json
+Authorization: token be176d07cc024f55c0787a08fc223ec56e278e39
