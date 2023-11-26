@@ -18,17 +18,17 @@ jobs:
         dotnet-version: 3.1
 
     - name: Build with dotnet
-      run: 
+      run: |
         cd csharp
         dotnet build --configuration Release
 
     - name: Test with dotnet
-      run: 
+      run: |
         cd csharp
         dotnet test
 
     - name: Publish with dotnet
-      run: 
+      run: |
         cd csharp
         dotnet lambda package --configuration Release --framework netcoreapp3.1 --output-package ./bin/Release/netcoreapp3.1/deploy-package.zip
 
