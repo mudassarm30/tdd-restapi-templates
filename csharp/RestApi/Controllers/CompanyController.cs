@@ -19,7 +19,7 @@ public class CompanyController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> Retrieve(string id)
+    public async Task<IActionResult> GetCompanyByIdAsync(string id)
     {
         try
         {
@@ -39,7 +39,7 @@ public class CompanyController : ControllerBase
     }
 
     [HttpPost("")]
-    public async Task<IActionResult> Create([FromBody] CreateCompanyRequest payload)
+    public async Task<IActionResult> InsertCompanyAsync([FromBody] CreateCompanyRequest payload)
     {
         try
         {
@@ -56,7 +56,7 @@ public class CompanyController : ControllerBase
 
             company.Id = Guid.NewGuid().ToString();
             await _companyService.InsertCompanyAsync(company);
-            return Ok();
+            return Ok(company);
         }
         catch (Exception ex)
         {
@@ -66,7 +66,7 @@ public class CompanyController : ControllerBase
     }
 
     [HttpGet("")]
-    public async Task<IActionResult> List()
+    public async Task<IActionResult> GetCompaniesAsync()
     {
         try
         {
@@ -86,7 +86,7 @@ public class CompanyController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(string id)
+    public async Task<IActionResult> DeleteCompanyAsync(string id)
     {
         try
         {
@@ -107,7 +107,7 @@ public class CompanyController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(string id, [FromBody] UpdateCompanyRequest payload)
+    public async Task<IActionResult> UpdateCompanyAsync(string id, [FromBody] UpdateCompanyRequest payload)
     {
         try
         {
@@ -153,7 +153,7 @@ public class CompanyController : ControllerBase
             }
 
             await _companyService.UpdateCompanyAsync(id, company);
-            return NoContent();
+            return Ok(company);
         }
         catch (Exception ex)
         {
@@ -163,7 +163,7 @@ public class CompanyController : ControllerBase
     }
 
     [HttpGet("user/{userId}")]
-    public async Task<IActionResult> GetByUserId(string userId)
+    public async Task<IActionResult> GetCompaniesByUserAsync(string userId)
     {
         try
         {

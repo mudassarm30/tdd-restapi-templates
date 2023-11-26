@@ -34,5 +34,73 @@ namespace RestApi.Tests.Services
             // Assert
             Assert.Equal(expectedCompany, result);
         }
+
+        [Fact]
+        public async Task GetCompaniesAsync_ReturnsAllCompanies()
+        {
+            // Arrange
+            var expectedCompanies = new List<Company> { new Company { Id = "1", Name = "Test Company" } };
+            _mockRepository.Setup(r => r.GetCompaniesAsync()).ReturnsAsync(expectedCompanies);
+
+            // Act
+            var result = await _service.GetCompaniesAsync();
+
+            // Assert
+            Assert.Equal(expectedCompanies, result);
+        }
+
+        [Fact]
+        public async Task InsertCompanyAsync_AddsCompany()
+        {
+            // Arrange
+            var newCompany = new Company { Id = "1", Name = "Test Company" };
+
+            // Act
+            await _service.InsertCompanyAsync(newCompany);
+
+            // Assert
+            _mockRepository.Verify(r => r.InsertCompanyAsync(newCompany), Times.Once);
+        }
+
+        [Fact]
+        public async Task UpdateCompanyAsync_UpdatesCompany()
+        {
+            // Arrange
+            var existingCompany = new Company { Id = "1", Name = "Test Company" };
+
+            // Act
+            await _service.UpdateCompanyAsync("1", existingCompany);
+
+            // Assert
+            _mockRepository.Verify(r => r.UpdateCompanyAsync("1", existingCompany), Times.Once);
+        }
+
+        [Fact]
+        public async Task DeleteCompanyAsync_DeletesCompany()
+        {
+            // Arrange
+            var companyId = "1";
+
+            // Act
+            await _service.DeleteCompanyAsync(companyId);
+
+            // Assert
+            _mockRepository.Verify(r => r.DeleteCompanyAsync(companyId), Times.Once);
+        }
+
+        [Fact]
+        public async Task GetCompaniesByUserAsync_ReturnsCompanies()
+        {
+            // Arrange
+            var userId = "1";
+            var expectedCompanies = new List<Company> { new Company { Id = "1", Name = "Test Company", UserId = userId } };
+            _mockRepository.Setup(r => r.GetCompaniesByUserAsync(userId)).ReturnsAsync(expectedCompanies);
+
+            // Act
+            var result = await _service.GetCompaniesByUserAsync(userId);
+
+            // Assert
+            Assert.Equal(expectedCompanies, result);
+        }
     }
 }
