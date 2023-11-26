@@ -17,6 +17,9 @@ jobs:
       with:
         dotnet-version: '6.0'
 
+    - name: Install dotnet-lambda
+      run: dotnet tool install -g Amazon.Lambda.Tools
+
     - name: Build with dotnet
       run: |
         cd csharp
