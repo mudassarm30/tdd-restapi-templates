@@ -1,10 +1,14 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using RestApi.Repositories;
 
+namespace RestApi.Models;
+
+[BsonCollection("companies")]
 public class Company
 {
     [BsonId]
-    [BsonRepresentation(BsonType.ObjectId)]
+    [BsonRepresentation(BsonType.String)]
     public string Id { get; set; }
 
     [BsonElement("Name")]
@@ -27,4 +31,7 @@ public class Company
 
     [BsonElement("Logo")]
     public string Logo { get; set; }
+
+    [BsonElement("UserId")]
+    public string UserId { get; set; }
 }

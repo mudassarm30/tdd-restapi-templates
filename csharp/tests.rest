@@ -1,0 +1,30 @@
+### Insert a company
+POST https://localhost:7208/api/companies
+Content-Type: application/json
+
+{
+  "Name": "Company Name",
+  "Address": "Company Address",
+  "UserId": "1"
+}
+
+### Get a company
+GET https://localhost:7208/api/companies/{id}
+
+### Get all companies
+GET https://localhost:7208/api/companies
+
+### Update Company
+PUT https://localhost:7208/api/companies/{id}
+Content-Type: application/json
+
+{
+    "name": "New Company Name",
+    "address": "New Company Address"
+}
+
+### Delete Company
+DELETE https://localhost:7208/api/companies/{id}
+
+### Get Companies by User ID
+GET https://localhost:7208/api/companies/user/{userId}
