@@ -46,7 +46,7 @@ jobs:
     - name: Deploy to AWS Lambda
       run: |
         cd csharp
-        aws lambda update-function-code --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} --zip-file fileb://./bin/Release/net6.0/deploy-package.zip
+        aws lambda update-function-code --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} --zip-file fileb://${{ github.workspace }}/csharp/RestApi/bin/Release/net6.0/deploy-package.zip
         aws apigateway create-deployment --rest-api-id ${{ env.AWS_API_GATEWAY_REST_API_ID }} --stage-name production --stage-description 'Production' --description 'New deployment'
       
       env:
