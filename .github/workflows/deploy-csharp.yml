@@ -34,7 +34,7 @@ jobs:
     - name: Publish with dotnet
       run: |
         cd csharp/RestApi
-        dotnet lambda package --configuration Release --framework net6.0 --output-package ./bin/Release/net6.0/deploy-package.zip
+        dotnet lambda package --configuration Release --framework net6.0 --output-package ${{ github.workspace }}/csharp/RestApi/bin/Release/net6.0/deploy-package.zip
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
