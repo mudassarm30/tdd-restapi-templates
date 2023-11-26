@@ -15,13 +15,13 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1
+        dotnet-version: 6.1
 
     - name: Build with dotnet
       run: |
         cd csharp
-        dotnet build ./RestApi/RestApi.csproj --configuration Release
-        dotnet build ./RestApi.Tests/RestApi.Tests.csproj --configuration Release
+        dotnet build RestApi/RestApi.csproj --configuration Release
+        dotnet build RestApi.Tests/RestApi.Tests.csproj --configuration Release
 
     - name: Test with dotnet
       run: |
