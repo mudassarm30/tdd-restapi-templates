@@ -1,6 +1,6 @@
-// Startup.cs
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
@@ -12,6 +12,13 @@ namespace RestApi
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -45,12 +52,6 @@ namespace RestApi
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
-
-            using (var scope = app.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                var database = services.GetRequiredService<IMongoDatabase>();
             }
 
             app.UseHttpsRedirection();
