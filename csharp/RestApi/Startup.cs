@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using RestApi.Repositories;
+using RestApi.Repositories.Implementations;
 using RestApi.Services;
 using RestApi.Services.Implementations;
 
