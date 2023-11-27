@@ -40,6 +40,7 @@ namespace RestApi
                 return database;
             });
 
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanyService, CompanyService>();
 
             services.AddEndpointsApiExplorer();
