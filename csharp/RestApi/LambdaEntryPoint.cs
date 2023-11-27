@@ -7,7 +7,7 @@ namespace RestApi
     {
         protected override void Init(IWebHostBuilder builder)
         {
-            builder.UseStartup<Startup>();
+            builder.UseStartup<Program>();
         }
     }
 }
