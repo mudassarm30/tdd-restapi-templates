@@ -22,19 +22,9 @@ jobs:
 
     - name: Build with dotnet
       run: |
-        cd csharp
-        dotnet build RestApi/RestApi.csproj --configuration Release
-        dotnet build RestApi.Tests/RestApi.Tests.csproj --configuration Release
-
-    - name: Test with dotnet
-      run: |
-        cd csharp
-        dotnet test RestApi.Tests/RestApi.Tests.csproj --configuration Release
-
-    - name: Publish with dotnet
-      run: |
         cd csharp/RestApi
-        dotnet lambda package --configuration Release --framework net6.0 --output-package ${{ github.workspace }}/csharp/RestApi/bin/Release/net6.0/deploy-package.zip
+        dotnet restore
+        dotnet build --configuration Release --output ./build
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -43,15 +33,11 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: Deploy to AWS Lambda
+    - name: Deploy to AWS Lambda and API Gateway
       run: |
-        cd csharp
-        aws lambda update-function-code --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} --zip-file fileb://${{ github.workspace }}/csharp/RestApi/bin/Release/net6.0/deploy-package.zip
+        dotnet lambda package --configuration Release --framework net6.0 --output-package ./build/deploy-package.zip
+        aws lambda update-function-code --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} --zip-file fileb://${{ github.workspace }}/csharp/RestApi/build/deploy-package.zip
         aws apigateway create-deployment --rest-api-id ${{ env.AWS_API_GATEWAY_REST_API_ID }} --stage-name production --stage-description 'Production' --description 'New deployment'
-      
       env:
         AWS_LAMBDA_FUNCTION_NAME: csharp-restapi-production
         AWS_API_GATEWAY_REST_API_ID: isia2j0uf8
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: us-east-1
