@@ -13,6 +13,7 @@ GET https://localhost:7208/api/companies/{id}
 
 ### Get all companies
 GET https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/production/api/companies
+Content-Type: application/json
 
 ### Update Company
 PUT https://localhost:7208/api/companies/{id}
