@@ -102,12 +102,12 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(User user)
+    public async Task<IActionResult> Login([FromBody] LoginUserRequest user)
     {
         var token = await _userService.Login(user.Username, user.Password);
         if (token == null)
         {
-            return Unauthorized();
+            return Unauthorized("Invalid username or password");
         }
 
         return Ok(new { Token = token });
