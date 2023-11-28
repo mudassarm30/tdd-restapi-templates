@@ -16,6 +16,12 @@ public class DatabaseInitializer
         _config = config;
     }
 
+    public static string GetCollectionName<T>()
+    {
+        var collectionAttribute = (BsonCollectionAttribute)Attribute.GetCustomAttribute(typeof(T), typeof(BsonCollectionAttribute));
+        return collectionAttribute?.CollectionName ?? typeof(T).Name.ToLower();
+    }
+
     public async Task SyncDatabaseWithModels()
     {
         var database = _mongoClient.GetDatabase(_config.DatabaseName);

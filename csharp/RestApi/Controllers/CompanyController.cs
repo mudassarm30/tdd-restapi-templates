@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestApi.Models;
 using RestApi.Models.Payloads;
@@ -18,6 +19,7 @@ public class CompanyController : ControllerBase
         _companyService = companyService;
     }
 
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetCompanyByIdAsync(string id)
     {
@@ -38,6 +40,7 @@ public class CompanyController : ControllerBase
         }
     }
 
+    [Authorize]
     [HttpPost("")]
     public async Task<IActionResult> InsertCompanyAsync([FromBody] CreateCompanyRequest payload)
     {
@@ -65,6 +68,7 @@ public class CompanyController : ControllerBase
         }
     }
 
+    [Authorize]
     [HttpGet("")]
     public async Task<IActionResult> GetCompaniesAsync()
     {
@@ -85,6 +89,7 @@ public class CompanyController : ControllerBase
         }
     }
 
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCompanyAsync(string id)
     {
@@ -106,6 +111,7 @@ public class CompanyController : ControllerBase
         }
     }
 
+    [Authorize]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateCompanyAsync(string id, [FromBody] UpdateCompanyRequest payload)
     {
@@ -162,6 +168,7 @@ public class CompanyController : ControllerBase
         }
     }
 
+    [Authorize]
     [HttpGet("user/{userId}")]
     public async Task<IActionResult> GetCompaniesByUserAsync(string userId)
     {
