@@ -22,7 +22,7 @@ GET https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/production/api/compan
 ### Get all companies
 GET https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/production/api/companies
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjY2NmIxZjQxZGViMjdmZmU2M2FjMSIsIm5iZiI6MTcwMTIxNTE0MCwiZXhwIjoxNzAxODE5OTQwLCJpYXQiOjE3MDEyMTUxNDB9.kOwWbWEREP2FJSMvGE1Y-gFG2kk14IH-nBynjQrr1CQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibXVkYXNzYXJtMzAiLCJuYmYiOjE3MDEyMTcxODksImV4cCI6MTcwMTgyMTk4OSwiaWF0IjoxNzAxMjE3MTg5LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0IiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdCJ9.8ZYTXrB167zVsbRmFztYvOU25X12lBntX0HrXOpzN48
 
 ### Update Company
 PUT https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/production/api/companies/{id}
@@ -52,4 +52,4 @@ Content-Type: application/json
 ### Get companies list
 GET https://localhost:7208/api/companies
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjY2NmIxZjQxZGViMjdmZmU2M2FjMSIsIm5iZiI6MTcwMTIxNjQzNSwiZXhwIjoxNzAxODIxMjM1LCJpYXQiOjE3MDEyMTY0MzV9.ndoBP1kYgO9Fp2RTlv0-cHfozEAZ0p7BS8OhhdVuAEg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibXVkYXNzYXJtMzAiLCJuYmYiOjE3MDEyMTY5MjIsImV4cCI6MTcwMTgyMTcyMiwiaWF0IjoxNzAxMjE2OTIyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0IiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdCJ9.x6a920nP65Il-WWP2T-VaNYcCf-vQIzy1xw_k1DJhGo
