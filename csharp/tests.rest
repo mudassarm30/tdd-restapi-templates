@@ -1,22 +1,31 @@
-### Insert a company
-POST https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/api/companies
+### Register a new user
+POST https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/production/api/users/register
 Content-Type: application/json
 
 {
-  "Name": "Company Name",
-  "Address": "Company Address",
-  "UserId": "1"
+    "username": "newuser",
+    "password": "password"
+}
+
+### Login a user
+POST https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/production/api/users/login
+Content-Type: application/json
+
+{
+    "username": "mudassarm30",
+    "password": "business"
 }
 
 ### Get a company
-GET https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/api/companies/{id}
+GET https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/production/api/companies/{id}
 
 ### Get all companies
 GET https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/production/api/companies
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjY2NmIxZjQxZGViMjdmZmU2M2FjMSIsIm5iZiI6MTcwMTIxNTE0MCwiZXhwIjoxNzAxODE5OTQwLCJpYXQiOjE3MDEyMTUxNDB9.kOwWbWEREP2FJSMvGE1Y-gFG2kk14IH-nBynjQrr1CQ
 
 ### Update Company
-PUT https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/api/companies/{id}
+PUT https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/production/api/companies/{id}
 Content-Type: application/json
 
 {
@@ -25,7 +34,22 @@ Content-Type: application/json
 }
 
 ### Delete Company
-DELETE https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/api/companies/{id}
+DELETE https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/production/api/companies/{id}
 
 ### Get Companies by User ID
-GET https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/api/companies/user/{userId}
+GET https://isia2j0uf8.execute-api.us-east-1.amazonaws.com/production/api/companies/user/{userId}
+
+### Login a user
+POST https://localhost:7208/api/users/login
+Content-Type: application/json
+
+{
+    "username": "mudassarm30",
+    "password": "business"
+}
+
+
+### Get companies list
+GET https://localhost:7208/api/companies
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjY2NmIxZjQxZGViMjdmZmU2M2FjMSIsIm5iZiI6MTcwMTIxNjQzNSwiZXhwIjoxNzAxODIxMjM1LCJpYXQiOjE3MDEyMTY0MzV9.ndoBP1kYgO9Fp2RTlv0-cHfozEAZ0p7BS8OhhdVuAEg
