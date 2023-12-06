@@ -76,6 +76,14 @@ To run the project locally:
 2. Configure the database connection in the `.env` file.
 3. Install dependencies using `composer install`.
 4. Run the development server with `php artisan serve`.
+5. To remove a branch locally and remotely
+
+```bash
+git branch -D <branch-name>
+git push origin --delete <branch-name>
+
+```
+
 
 
 
