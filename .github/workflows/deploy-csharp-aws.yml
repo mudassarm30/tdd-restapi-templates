@@ -1,0 +1,47 @@
+name: .NET Core Lambda Deployment
+
+on:
+  push:
+    branches: 
+      - "csharp_aws"
+  pull_request:
+    branches:
+      - "csharp_aws"
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0'
+
+    - name: Install dotnet-lambda
+      run: dotnet tool install -g Amazon.Lambda.Tools
+
+    - name: Build with dotnet
+      run: |
+        cd csharp/RestApi
+        dotnet restore
+        dotnet build --configuration Release --output ./build
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Deploy to AWS Lambda and API Gateway
+      run: |
+        cd csharp/RestApi
+        dotnet lambda package --configuration Release --framework net6.0 --output-package ./build/deploy-package.zip
+        aws lambda update-function-code --function-name ${{ env.AWS_LAMBDA_FUNCTION_NAME }} --zip-file fileb://${{ github.workspace }}/csharp/RestApi/build/deploy-package.zip
+        aws apigateway create-deployment --rest-api-id ${{ env.AWS_API_GATEWAY_REST_API_ID }} --stage-name production --stage-description 'Production' --description 'New deployment'
+      env:
+        AWS_LAMBDA_FUNCTION_NAME: csharp-restapi-production
+        AWS_API_GATEWAY_REST_API_ID: isia2j0uf8

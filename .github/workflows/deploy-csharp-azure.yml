@@ -2,8 +2,11 @@ name: .NET Core Lambda Deployment
 
 on:
   push:
-    branches: [ csharp ]
-
+    branches: 
+      - "csharp_azure"
+  pull_request:
+    branches:
+      - "csharp_azure"
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
